@@ -16,7 +16,7 @@ namespace Customers.Presentation
         public async Task<object> Any(Services.Add request)
         {
             var command = new Domain.Commands.Create() { Name = request.Name, Surname = request.Surname, City = request.City, PassportNo = request.PassportNo };
-            _nServiceBus.Send("DomainEndpoint", command);
+            _nServiceBus.Send("DomainEndpoint", command).ConfigureAwait(false);
             return true;
         }
 

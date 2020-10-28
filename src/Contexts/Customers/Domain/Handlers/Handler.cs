@@ -10,7 +10,7 @@ namespace Customers.Domain.Handlers
         {
             var customer = new Domain.Aggregates.Customer();
             customer.Create(message.Name, message.Surname, message.PassportNo, message.City);
-            return Task.CompletedTask;
+            return customer.PublishEvents(context);
         }
     }
 }

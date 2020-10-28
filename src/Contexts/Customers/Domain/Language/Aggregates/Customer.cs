@@ -5,6 +5,7 @@ namespace Customers.Domain.Aggregates
         public void Create(string name, string surname, string passportNo, string city)
         {
             ApplyEvent(new Events.Created() {
+                Id = base.Id,
                 Name = name,
                 Surname = surname,
                 City = city,

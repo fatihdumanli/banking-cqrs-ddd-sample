@@ -1,3 +1,4 @@
+using NServiceBus;
 using System;
 using System.Collections.Generic;
 
@@ -7,13 +8,15 @@ namespace SeedWork
     {
         public Guid Id { get; private set; }
         private List<SeedWork.IEvent> _unCommittedEvents;
+        public IReadOnlyCollection<SeedWork.IEvent> UncomittedEvents => _unCommittedEvents.AsReadOnly();
+
         public Aggregate()
         {
             Id = Guid.NewGuid();
             _unCommittedEvents = new List<IEvent>();
         }
 
-        public void ApplyEvent(IEvent @event)
+        protected void ApplyEvent(IEvent @event)
         {
             _unCommittedEvents.Add(@event);
         }

@@ -10,4 +10,8 @@
     <PackageReference Include="ServiceStack" Version="5.9.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Contexts\Customers\Presentation\Customer.Presentation.csproj" />
+  </ItemGroup>
+
 </Project>

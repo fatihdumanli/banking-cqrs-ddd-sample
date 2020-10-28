@@ -14,7 +14,7 @@ namespace Presentation
 {
     class AppHost : AppHostBase
     {
-        public AppHost() : base("Presentation", typeof(Startup).Assembly)
+        public AppHost() : base("Presentation", typeof(Customers.Presentation.Service).Assembly)
         {
         }
 

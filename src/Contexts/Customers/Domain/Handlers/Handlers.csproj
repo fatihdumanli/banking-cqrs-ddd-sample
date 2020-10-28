@@ -1,16 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="6.0.0" />
+    <PackageReference Include="NServiceBus" Version="7.4.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Contexts\Customers\Domain\Handlers\Handlers.csproj" />
+    <ProjectReference Include="..\Language\Language.csproj" />
   </ItemGroup>
 
 </Project>

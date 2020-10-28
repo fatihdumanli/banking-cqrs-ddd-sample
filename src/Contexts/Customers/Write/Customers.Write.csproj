@@ -1,15 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.4.4" />
-    <PackageReference Include="ServiceStack" Version="5.9.2" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\..\..\SeedWork\SeedWork.csproj" />
     <ProjectReference Include="..\Domain\Language\Customers.Domain.Language.csproj" />
   </ItemGroup>
 

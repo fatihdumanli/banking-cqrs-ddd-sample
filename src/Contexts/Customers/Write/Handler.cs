@@ -11,7 +11,8 @@ namespace Customers.Write
 {
     public class Handler :
           NServiceBus.IHandleMessages<Customers.Domain.Events.Created>,
-          NServiceBus.IHandleMessages<Customers.Domain.Events.MarkedAsStarred>
+          NServiceBus.IHandleMessages<Customers.Domain.Events.MarkedAsStarred>,
+          NServiceBus.IHandleMessages<Customers.Domain.Events.MovedToNewCity>
     {
         DbContextOptionsBuilder<CustomerDbContext> builder =
                     new DbContextOptionsBuilder<CustomerDbContext>().UseSqlServer("Server=localhost,1433;Initial Catalog=CustomerService;User Id=sa;Password=P@ssw0rd;TrustServerCertificate=True;Connection Timeout=5;");
@@ -42,6 +43,15 @@ namespace Customers.Write
             var dbContext = new CustomerDbContext(builder.Options);
             var customer = dbContext.Customers.Where(c => c.Id == message.CustomerId).SingleOrDefault();
             customer.ClassificationId = Classification.Starred.Id;
+            dbContext.SaveChanges();
+            return Task.CompletedTask;
+        }
+
+        public Task Handle(MovedToNewCity message, IMessageHandlerContext context)
+        {
+             var dbContext = new CustomerDbContext(builder.Options);
+            var customer = dbContext.Customers.Where(c => c.Id == message.CustomerId).SingleOrDefault();
+            customer.City = message.City;
             dbContext.SaveChanges();
             return Task.CompletedTask;
         }

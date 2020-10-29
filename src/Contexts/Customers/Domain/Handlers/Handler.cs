@@ -6,7 +6,8 @@ namespace Customers.Domain.Handlers
 {
     public class Handler : 
         NServiceBus.IHandleMessages<Domain.Commands.Create>,
-        NServiceBus.IHandleMessages<Domain.Commands.MarkAsStarred>
+        NServiceBus.IHandleMessages<Domain.Commands.MarkAsStarred>,
+        NServiceBus.IHandleMessages<Domain.Commands.UpdateCity>
     {
         public Task Handle(Create message, IMessageHandlerContext context)
         {
@@ -24,6 +25,13 @@ namespace Customers.Domain.Handlers
             var customer = new Domain.Aggregates.Customer(message.CustomerId);
             customer.MarkAsStarred();
             return customer.PublishEvents(context);            
+        }
+
+        public Task Handle(UpdateCity message, IMessageHandlerContext context)
+        {
+            var customer = new Domain.Aggregates.Customer(message.CustomerId);
+            customer.Move(message.City);
+            return customer.PublishEvents(context);
         }
     }
 }

@@ -27,5 +27,12 @@ namespace Customers.Presentation
             return true;
         }
 
+        public async Task<object> Any(Services.UpdateCity request)
+        {
+            var command = new Domain.Commands.UpdateCity(request.Id, request.City);
+            _nServiceBus.Send("DomainEndpoint", command).ConfigureAwait(false);
+            return true;
+        }
+
     }
 }

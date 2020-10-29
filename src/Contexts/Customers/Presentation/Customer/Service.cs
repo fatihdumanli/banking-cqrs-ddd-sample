@@ -27,6 +27,13 @@ namespace Customers.Presentation
             return true;
         }
 
+        public async Task<object> Any(Services.MarkAsSuspicious request)
+        {
+            var command = new Domain.Commands.MarkAsSuspicious(request.CustomerId);
+            _nServiceBus.Send("DomainEndpoint", command).ConfigureAwait(false);
+            return true;
+        }
+
         public async Task<object> Any(Services.UpdateCity request)
         {
             var command = new Domain.Commands.UpdateCity(request.Id, request.City);

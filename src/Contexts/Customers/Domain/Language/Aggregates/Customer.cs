@@ -29,6 +29,10 @@ namespace Customers.Domain.Aggregates
             ApplyEvent(new Events.MarkedAsStarred(this.Id));
         }
 
+        public void MarkAsSuspicious()
+        {
+            ApplyEvent(new Events.MarkedAsSuspicious(this.Id));
+        }
         public void Move(string city)
         {
             ApplyEvent(new Events.MovedToNewCity(Id, city));

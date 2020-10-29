@@ -10,6 +10,10 @@ namespace Customers.Domain.Handlers
         {
             var customer = new Domain.Aggregates.Customer();
             customer.Create(message.Name, message.Surname, message.PassportNo, message.City);
+            //customer.Create causes a event.
+            //Can be accessed via customer.UncommitedEvents.
+            //Domain endpoint is responsible for publishing these event(s).
+
             return customer.PublishEvents(context);
         }
     }

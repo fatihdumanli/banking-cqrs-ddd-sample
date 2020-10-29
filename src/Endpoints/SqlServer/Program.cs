@@ -11,13 +11,14 @@ namespace SqlServer
 
 
         static void Main(string[] args)
-        {    
-            var endpointConfiguration = new EndpointConfiguration("SqlServerEndpoint");
-            var registry = new Registry();
-            registry.For<UnitOfWork>().Use(new UnitOfWork());
+        {
 
-            
-            endpointConfiguration.UseContainer(new StructureMapServiceProviderFactory(registry));
+            //var registry = new Registry();
+            //registry.For<UnitOfWork>().Use(new UnitOfWork());
+            //endpointConfiguration.UseContainer(new StructureMapServiceProviderFactory(registry));
+
+            var endpointConfiguration = new EndpointConfiguration("SqlServerEndpoint");
+         
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UseTransport<RabbitMQTransport>().ConnectionString("amqp://localhost").UseDirectRoutingTopology();
             Endpoint.Start(endpointConfiguration).ConfigureAwait(false);

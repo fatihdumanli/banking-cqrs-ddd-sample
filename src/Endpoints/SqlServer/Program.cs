@@ -15,6 +15,8 @@ namespace SqlServer
             var endpointConfiguration = new EndpointConfiguration("SqlServerEndpoint");
             var registry = new Registry();
             registry.For<UnitOfWork>().Use(new UnitOfWork());
+
+            
             endpointConfiguration.UseContainer(new StructureMapServiceProviderFactory(registry));
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UseTransport<RabbitMQTransport>().ConnectionString("amqp://localhost").UseDirectRoutingTopology();

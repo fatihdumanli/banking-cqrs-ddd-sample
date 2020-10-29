@@ -4,7 +4,9 @@ using NServiceBus;
 
 namespace Customers.Domain.Handlers
 {
-    public class Handler : NServiceBus.IHandleMessages<Domain.Commands.Create>
+    public class Handler : 
+        NServiceBus.IHandleMessages<Domain.Commands.Create>,
+        NServiceBus.IHandleMessages<Domain.Commands.MarkAsStarred>
     {
         public Task Handle(Create message, IMessageHandlerContext context)
         {
@@ -15,6 +17,13 @@ namespace Customers.Domain.Handlers
             //Domain endpoint is responsible for publishing these event(s).
 
             return customer.PublishEvents(context);
+        }
+
+        public Task Handle(MarkAsStarred message, IMessageHandlerContext context)
+        {
+            var customer = new Domain.Aggregates.Customer(message.CustomerId);
+            customer.MarkAsStarred();
+            return customer.PublishEvents(context);            
         }
     }
 }

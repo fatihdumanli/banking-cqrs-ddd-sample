@@ -20,5 +20,12 @@ namespace Customers.Presentation
             return true;
         }
 
+        public async Task<object> Any(Services.MarkAsStarred request)
+        {
+            var command = new Domain.Commands.MarkAsStarred(request.CustomerId);
+            _nServiceBus.Send("DomainEndpoint", command).ConfigureAwait(false);
+            return true;
+        }
+
     }
 }

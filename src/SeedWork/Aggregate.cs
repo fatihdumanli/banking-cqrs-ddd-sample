@@ -6,7 +6,7 @@ namespace SeedWork
 {
     public abstract class Aggregate
     {
-        public Guid Id { get; private set; }
+        public Guid Id { get; protected set; }
         private List<SeedWork.IEvent> _unCommittedEvents;
         public IReadOnlyCollection<SeedWork.IEvent> UncomittedEvents => _unCommittedEvents.AsReadOnly();
 

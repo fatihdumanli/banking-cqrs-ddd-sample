@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Contexts\Accounting\Domain\Handlers\Accounting.Domain.Handler.csproj" />
     <ProjectReference Include="..\..\Contexts\Customers\Domain\Handlers\Customers.Domain.Handler.csproj" />
   </ItemGroup>
 

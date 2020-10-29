@@ -16,7 +16,8 @@ namespace Customers.Write
           NServiceBus.IHandleMessages<Customers.Domain.Events.MarkedAsSuspicious>
     {
         DbContextOptionsBuilder<CustomerDbContext> builder =
-                    new DbContextOptionsBuilder<CustomerDbContext>().UseSqlServer("Server=localhost,1433;Initial Catalog=CustomerService;User Id=sa;Password=P@ssw0rd;TrustServerCertificate=True;Connection Timeout=5;");
+                    new DbContextOptionsBuilder<CustomerDbContext>()
+            .UseSqlServer("Server=localhost,1433;Initial Catalog=CustomerService;User Id=sa;Password=P@ssw0rd;TrustServerCertificate=True;Connection Timeout=5;");
 
         public Task Handle(Created message, IMessageHandlerContext context)
         {

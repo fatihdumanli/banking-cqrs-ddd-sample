@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Contexts\Accounting\Presentation\Accounting.Presentation.csproj" />
     <ProjectReference Include="..\..\Contexts\Customers\Presentation\Customer.Presentation.csproj" />
   </ItemGroup>
 

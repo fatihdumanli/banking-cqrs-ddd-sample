@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Customers.Domain.Commands;
 using NServiceBus;
+using SeedWork;
 
 namespace Customers.Domain.Handlers
 {
